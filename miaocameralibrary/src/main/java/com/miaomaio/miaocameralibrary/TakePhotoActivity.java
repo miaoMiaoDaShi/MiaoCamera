@@ -1,13 +1,18 @@
 package com.miaomaio.miaocameralibrary;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.miaomaio.miaocameralibrary.utils.DisplayView;
+
+import java.io.File;
 
 /**
  * Author : zhongwenpeng
@@ -15,7 +20,7 @@ import com.miaomaio.miaocameralibrary.utils.DisplayView;
  * Time :  2018/7/24
  * Description :
  */
-public class TakePhotoActivity extends AppCompatActivity implements View.OnClickListener {
+public class TakePhotoActivity extends AppCompatActivity implements View.OnClickListener, DisplayView.OnPictureListener {
     private DisplayView mDisplayView;
     private ImageView mIvClose;
     private ImageView mIvConfirm;
@@ -27,6 +32,7 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_photo);
         mDisplayView = findViewById(R.id.mDisPlayView);
+        mDisplayView.setOnPictureListener(this);
 
 
         mIvClose = findViewById(R.id.mIvClose);
@@ -37,6 +43,7 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnClick
     }
 
     private boolean mIsTaked = false;
+
     @Override
     public void onClick(View v) {
         final int id = v.getId();
@@ -51,6 +58,7 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onResume() {
         super.onResume();
+        mIvConfirm.setEnabled(true);
         mDisplayView.startCamera();
     }
 
@@ -61,4 +69,15 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnClick
     }
 
 
+    @Override
+    public void onSuccess(File imageFile, String path, Bitmap bitmap) {
+        final Intent intent = new Intent(this, ConfirmImageActivity.class);
+        intent.putExtra("imagePath", path);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onFailed(String e) {
+        Toast.makeText(this, e, Toast.LENGTH_SHORT).show();
+    }
 }

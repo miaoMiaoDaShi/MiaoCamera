@@ -180,7 +180,6 @@ public class DisplayView extends FrameLayout implements Camera.PreviewCallback, 
     /**
      * 获取闪光的  模式
      *
-     * @return
      */
     public String getFlashMode() {
         if (this.mCameraWrapper != null && CameraUtils.isFlashSupported(this.mCameraWrapper.mCamera)) {
@@ -227,7 +226,7 @@ public class DisplayView extends FrameLayout implements Camera.PreviewCallback, 
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bufferedOutputStream);
             bufferedOutputStream.flush();
             if (mOnPictureListener != null) {
-                mOnPictureListener.onSuccess(imageFile, mImageFilePath, bitmap);
+                mOnPictureListener.onSuccess(imageFile, imageFile.getAbsolutePath(), bitmap);
             }
 
         } catch (Exception e) {

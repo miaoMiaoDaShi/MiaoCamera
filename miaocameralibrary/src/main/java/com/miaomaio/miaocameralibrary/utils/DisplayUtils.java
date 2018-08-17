@@ -19,7 +19,7 @@ public class DisplayUtils {
 
     @SuppressLint("ObsoleteSdkInt")
     public static Point getScreenResolution(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService("window");
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         Point screenResolution = new Point();
         if (Build.VERSION.SDK_INT >= 13) {
@@ -32,7 +32,7 @@ public class DisplayUtils {
     }
 
     public static int getScreenOrientation(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService("window");
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = null;
         if (wm != null) {
             display = wm.getDefaultDisplay();
