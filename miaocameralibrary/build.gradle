@@ -6,8 +6,8 @@ publish {
     groupId = 'com.miaomiao'         //compile引用时的第1部分groupId
     artifactId = 'camera'     //compile引用时的第2部分项目名
     repoName = 'camera'
-    publishVersion = '1.0.4'    //compile引用时的第3部分版本号
-    desc = 'qrcode'
+    publishVersion = '1.0.5'    //compile引用时的第3部分版本号
+    desc = 'custom camera'
     website = 'https://github.com/miaoMiaoDaShi/MiaoCamera'
 
 }

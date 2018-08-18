@@ -1,5 +1,6 @@
 package com.miaomaio.miaocameralibrary;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -73,11 +74,24 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnClick
     public void onSuccess(File imageFile, String path, Bitmap bitmap) {
         final Intent intent = new Intent(this, ConfirmImageActivity.class);
         intent.putExtra("imagePath", path);
-        startActivity(intent);
+        startActivityForResult(intent, 0x10);
     }
 
     @Override
     public void onFailed(String e) {
         Toast.makeText(this, e, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0x10 && resultCode == ConfirmImageActivity.RESULT_CLOSE) {//取消选择
+            finish();
+        } else if (requestCode == 0x10 && resultCode == ConfirmImageActivity.RESULT_CONFIRM) {//确认选择
+            setResult(Activity.RESULT_OK, data);
+            finish();
+        } else if (requestCode == 0x10 && resultCode == ConfirmImageActivity.RESULT_RESET) {//从新选择
+
+        }
     }
 }

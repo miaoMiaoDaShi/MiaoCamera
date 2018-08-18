@@ -26,6 +26,9 @@ public class ConfirmImageActivity extends AppCompatActivity implements View.OnCl
     private ImageView mIvConfirm;
     private ImageView mIvReset;
     private String mImagePath;
+    public static final int RESULT_CLOSE = 0x10;
+    public static final int RESULT_CONFIRM = 0x11;
+    public static final int RESULT_RESET = 0x12;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,11 +72,11 @@ public class ConfirmImageActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.mIvClose) {
-            callBack(1);
+            callBack(RESULT_CLOSE);
         } else if (id == R.id.mIvConfirm) {
-            callBack(2);
+            callBack(RESULT_CONFIRM);
         } else if (id == R.id.mIvReset) {
-            callBack(3);
+            callBack(RESULT_RESET);
         }
     }
 
