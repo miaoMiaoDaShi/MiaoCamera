@@ -7,13 +7,21 @@
     android:background="@android:color/black">
 
 
-    <com.miaomaio.miaocameralibrary.utils.DisplayView
-        android:id="@+id/mDisPlayView"
+    <com.google.android.cameraview.CameraView
+        android:id="@+id/mCameraView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.miaomaio.miaocameralibrary.utils.DisplayView>
+    </com.google.android.cameraview.CameraView>
 
+
+    <ImageView
+        android:id="@+id/mIvChangeFlash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_flash_auto" />
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -6,7 +6,7 @@ publish {
     groupId = 'com.miaomiao'         //compile引用时的第1部分groupId
     artifactId = 'camera'     //compile引用时的第2部分项目名
     repoName = 'camera'
-    publishVersion = '1.0.5'    //compile引用时的第3部分版本号
+    publishVersion = '1.0.7'    //compile引用时的第3部分版本号
     desc = 'custom camera'
     website = 'https://github.com/miaoMiaoDaShi/MiaoCamera'
 
@@ -17,7 +17,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 14
         //noinspection OldTargetApi
         targetSdkVersion 27
         versionCode 1
@@ -37,11 +37,11 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':library')
 }

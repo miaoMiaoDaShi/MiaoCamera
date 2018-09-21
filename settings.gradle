@@ -1,1 +1,1 @@
-include ':app', ':miaocameralibrary',':ucroplibrary'
+include ':app', ':miaocameralibrary','library'//,':ucroplibrary'
