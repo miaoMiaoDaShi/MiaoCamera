@@ -13,6 +13,18 @@
 // limitations under the License.
 
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'zhongwenpeng'      //bintray注册的用户名
+    groupId = 'com.miaomiao'         //compile引用时的第1部分groupId
+    artifactId = 'cameraLibrary'     //compile引用时的第2部分项目名
+    repoName = 'cameraLibrary'
+    publishVersion = '1.0.2'    //compile引用时的第3部分版本号
+    desc = 'custom camera'
+    website = 'https://github.com/miaoMiaoDaShi/MiaoCamera'
+
+}
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -49,4 +61,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude module: 'support-annotations'
     }
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
 }
