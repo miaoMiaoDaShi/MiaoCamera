@@ -182,7 +182,7 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnClick
                     switch (msg.what) {
                         case WHAT_SUCCESS:
                             final Intent intent = new Intent(TakePhotoActivity.this, ConfirmImageActivity.class);
-                            intent.putExtra("imagePath", ((String)msg.obj));
+                            intent.putExtra("imagePath", ((String) msg.obj));
                             startActivityForResult(intent, 0x10);
                             break;
                         case WHAT_FAILED:
@@ -215,11 +215,16 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnClick
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        mCameraView.stop();
+        super.onPause();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mBackgroundHandler = null;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
